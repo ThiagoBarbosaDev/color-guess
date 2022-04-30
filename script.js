@@ -3,6 +3,7 @@ const ballsArray = document.querySelectorAll('.ball');
 const resultScreen = document.querySelector('#result-screen');
 const resultText = document.querySelector('#answer');
 const resetButton = document.querySelector('#reset-game');
+const scoreP = document.querySelector('#score')
 
 function generateRGB() {
   const r = Math.floor(Math.random() * 255 + 1);
@@ -36,16 +37,19 @@ function paintBall() {
 
 paintBall();
 
+let score = 0;
+
 function winStateHandler() {
   ballsArray.forEach((balls) => {
     balls.addEventListener('click', (e) => {
       if (e.target.id === 'winner') {
-        resultText.innerText = 'Acertou!';
+        resultText.innerText = 'Acertou!'; score += 3; scoreP.innerText = `Score: ${score}`; 
       } else {
         resultText.innerText = 'Errou! Tente novamente!';
       }
     });
   });
+
 }
 
 winStateHandler();
